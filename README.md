@@ -58,5 +58,5 @@ docker compose exec app php artisan test
 ## Zespół
 
 - Michał Kuchar: backend, tester
-- Kyrylo: backend, devops
+- Kyrylo Shchedrin: backend, devops
 - Jakub Maliński: lider projektu
