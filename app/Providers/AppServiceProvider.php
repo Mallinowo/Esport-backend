@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Laravel\Socialite\Facades\Socialite;
+use SocialiteProviders\Discord\Provider as DiscordProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        
+      
     }
 }
