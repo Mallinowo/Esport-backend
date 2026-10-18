@@ -2,10 +2,14 @@
 
 REST API for the esports leagues and tournaments platform. A team project built at Collegium Witelona.
 
-Related repositories:
+Related:
 
-- project documentation and Figma: https://github.com/Mallinowo/esport-platform
+- project documentation: [docs](docs/README.md)
 - frontend: https://github.com/Mallinowo/Esport-frontend
+
+## Interface design
+
+Figma (comments enabled): https://www.figma.com/design/CGoSyApn2FSrY2Xm8pGTCH/Esport-Platform---Design-System?node-id=0-1
 
 ## Scope
 
