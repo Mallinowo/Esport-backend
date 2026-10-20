@@ -10,6 +10,13 @@ class AuthTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->app['env'] = 'testing';
+    }
+
     public function test_user_can_register_and_is_logged_in(): void
     {
         $response = $this->postJson('/api/auth/register', [
