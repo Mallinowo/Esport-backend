@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\TeamInvitation;
 use Illuminate\Support\Str;
 
 class TeamController extends Controller
@@ -38,10 +39,35 @@ class TeamController extends Controller
         ], 201);
     }
     public function invite(Request $request, Team $team)
-{
-    if ($team->user_id !== $request->user()->id) {
-    // Если не совпало — отбиваем запрос с ошибкой доступа (HTTP 403)
-    return response()->json(['message' => 'access denied'], 403);
-}
-}
+    {
+        
+        if ($team->user_id !== $request->user()->id) {
+            return response()->json(['message' => 'Only the captain can send invitations.'], 403);
+        }
+
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $targetUserId = $validated['user_id'];
+
+        if ($targetUserId === $request->user()->id) {
+            return response()->json(['message' => 'You cannot invite yourself.'], 422);
+        }
+
+        if ($team->members()->where('user_id', $targetUserId)->exists()) {
+            return response()->json(['message' => 'The user is already a member of this team.'], 422);
+        }
+
+        $invitation = TeamInvitation::create([
+            'team_id' => $team->id,
+            'user_id' => $targetUserId,
+            'status' => 'pending',
+        ]);
+
+        return response()->json([
+            'message' => 'The invitation has been sent successfully!',
+            'invitation' => $invitation,
+        ], 201);
+    }
 }

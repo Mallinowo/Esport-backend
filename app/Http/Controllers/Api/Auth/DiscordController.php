@@ -4,35 +4,51 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Support\Str;
+use Exception;
 
 class DiscordController extends Controller
 {
     /**
      * Redirecting the user to the Discord login page
      */
-    public function redirectToDiscord()
+    public function redirectToDiscord(): RedirectResponse
     {
-        return Socialite::driver('discord')->stateless()->redirect();
+       /** @var \Laravel\Socialite\Two\AbstractProvider $driver */
+        $driver = Socialite::driver('discord');
+        
+        return $driver->stateless()
+            ->redirectUrl(config('services.discord.redirect'))
+            ->redirect();
     }
 
     /**
      * Callback from Discord after login confirmation
      */
-    public function handleDiscordCallback()
+    public function handleDiscordCallback(): JsonResponse
     {
         try {
-            $discordUser = Socialite::driver('discord')->stateless()->user();
+            /** @var \Laravel\Socialite\Two\AbstractProvider $driver */
+            $driver = Socialite::driver('discord');
 
-        
-            $user = User::updateOrCreate([
-                'email' => $discordUser->getEmail(),
-            ], [
-                'name' => $discordUser->getName() ?? $discordUser->getNickname(),
-                'password' => bcrypt(Str::random(24)),
-            ]);
+            $discordUser = $driver->stateless()
+                ->redirectUrl(config('services.discord.redirect'))
+                ->user();
+
+    
+            $user = User::updateOrCreate(
+                ['discord_id' => $discordUser->getId()],
+                [
+                    'name' => $discordUser->getName() ?? $discordUser->getNickname(),
+                    'email' => $discordUser->getEmail(),
+                    'avatar' => $discordUser->getAvatar(),
+                    'password' => bcrypt(Str::random(24)),
+                ]
+            );
 
         
             $token = $user->createToken('discord-auth-token')->plainTextToken;
