@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\DiscordController;
 use App\Http\Controllers\Api\TeamController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Resources\UserResource;
 
 
 Route::get('/statusTEST', function () {
