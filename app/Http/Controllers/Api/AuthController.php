@@ -16,14 +16,17 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request): JsonResponse
-    {
-        $user = User::create($request->safe()->only(['name', 'email', 'password']));
+{
+    $data = $request->safe()->only(['name', 'email', 'password']);
+    $data['password'] = \Illuminate\Support\Facades\Hash::make($data['password']);
 
-        Auth::guard('web')->login($user);
-        $request->session()->regenerate();
+    $user = User::create($data);
 
-        return UserResource::make($user)->response()->setStatusCode(201);
-    }
+    Auth::guard('web')->login($user);
+    $request->session()->regenerate();
+
+    return UserResource::make($user)->response()->setStatusCode(201);
+}
 
     public function login(LoginRequest $request): JsonResponse
     {
