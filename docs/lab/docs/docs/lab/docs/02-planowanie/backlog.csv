@@ -1,0 +1,21 @@
+﻿ID;Epik;Historyjka;Priorytet;SP;Status;Zadania
+US-01;E1. Konto i dostęp;Rejestracja i logowanie e-mailem;Must;12;w trakcie;"Backend: #5 Add register, login and logout endpoints; #1 Configure Sanctum SPA auth; #6 Add Polish validation messages. Frontend: Add login and register pages (nowe*)."
+US-02;E1. Konto i dostęp;Logowanie przez Discord;Should;5;do zrobienia;Backend: Add Discord login. Frontend: Add Discord login button and callback page (nowe*).
+US-03;E2. Drużyny;Utworzenie drużyny;Must;8;do zrobienia;Backend: Add team create and members endpoints (nowe*). Frontend: Add team page and create team form (nowe*). Część backendu jest na branchu feature/teams-api (tabele teams, team_users, TeamController).
+US-04;E2. Drużyny;Zapraszanie zawodników do drużyny;Must;6;do zrobienia;Backend: Add team invitations endpoints (nowe*). Frontend: Add invitations list and invite form (nowe*).
+US-05;E3. Organizacja rozgrywek;Tworzenie rozgrywek;Must;8;do zrobienia;Backend: Add create and edit competition endpoints (nowe*). Frontend: Add create competition form (nowe*).
+US-06;E3. Organizacja rozgrywek;Zapis drużyny do rozgrywek;Must;5;do zrobienia;Backend: Add competition registration endpoint (nowe*). Frontend: Add sign up team button on competition page (nowe*).
+US-07;E3. Organizacja rozgrywek;Automatyczny terminarz ligi;Must;5;do zrobienia;Backend: Add league schedule generator.
+US-08;E3. Organizacja rozgrywek;Automatyczna drabinka pucharu;Must;5;do zrobienia;Backend: Add cup bracket generator.
+US-09;E4. Przeglądanie rozgrywek;Lista rozgrywek z filtrami;Must;11;w trakcie;"Backend: #10 Add games and competitions list endpoints. Frontend: #43 Add CompetitionCard component; Add competitions list page."
+US-10;E4. Przeglądanie rozgrywek;Strona ligi i obserwowanie;Must;11;w trakcie;Backend: #11 Add competition details, teams and follow endpoints. Frontend: Add league page with table and schedule.
+US-11;E4. Przeglądanie rozgrywek;Tabela ligi;Must;10;do zrobienia;Backend: Add standings calculation and endpoint. Frontend: Add StandingsTable component.
+US-12;E4. Przeglądanie rozgrywek;Terminarz i wyniki meczów;Must;5;w trakcie;Backend: Add schedule endpoint. Frontend: #44 Add MatchRow component.
+US-13;E4. Przeglądanie rozgrywek;Podgląd drabinki pucharu;Must;11;do zrobienia;"Backend: Add bracket endpoint. Frontend: Add BracketMatch component; Add cup bracket page."
+US-14;E5. Wyniki meczów;Mecze do rozliczenia;Should;3;do zrobienia;Backend: Add match details and my matches endpoints.
+US-15;E5. Wyniki meczów;Zgłoszenie i potwierdzenie wyniku;Must;13;do zrobienia;Backend: Add result report and confirm endpoints. Frontend: Add match result report page.
+US-16;E5. Wyniki meczów;Spór o wynik;Should;10;do zrobienia;Backend: Add dispute and resolve endpoints. Frontend: Add FileUpload component.
+US-17;E5. Wyniki meczów;Rozstrzygnięcie sporu;Should;3;do zrobienia;Frontend: Add dispute resolve view for organizer (nowe*). Endpoint rozstrzygnięcia jest w zadaniu z US-16 (Add dispute and resolve endpoints).
+US-18;E6. Wyniki na żywo;Wyniki na żywo;Should;10;do zrobienia;Backend: Add live updates with Reverb. Frontend: Add live updates with Echo.
+US-19;E7. Administracja;Zarządzanie rolami;Should;7;w trakcie;"Backend: #7 Add user roles; Add admin endpoint for user roles (nowe*). Frontend: Add admin users page with roles (nowe*)."
+US-20;E7. Administracja;Log aktywności;Could;7;do zrobienia;"Backend: Add activity log; Add activity log endpoint (nowe*). Frontend: Add activity log page for admin (nowe*)."
